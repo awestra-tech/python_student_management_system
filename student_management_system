@@ -1,3 +1,20 @@
+import mysql.connector
+
+# connect to MariaDB Laragon
+db = mysql.connector.connect(
+    host="127.0.0.1",
+    user="root",
+    password="", # Kosongkan sesuai settingan Laragon
+    database="student_management_system" # Nama DB yang kamu buat tadi
+)
+
+cursor = db.cursor()
+
+# Check if it succeed
+if db.is_connected():
+    print("Successfully connected to database")
+
+
 class Student:
     def __init__ (self, id, name, grade, gpa):
         self.id = id
@@ -5,5 +22,13 @@ class Student:
         self.grade = grade
         self.gpa = gpa
 
+    def add_student(id, name, grade, gpa):
+        sql = "INSERT INTO student (student_id, student_name, grade, gpa) VALUES (%s, %s, %s, %s)"
+        val = (id, name, grade, gpa)
+        cursor.execute(sql, val)
+        db.commit()
+        print(f"{name}'s data succefully saved!")
+
+
     def update_grade(id, grade):
-        
+        pass
