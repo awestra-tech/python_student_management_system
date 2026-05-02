@@ -2,10 +2,11 @@ import mysql.connector
 
 # connect to MariaDB Laragon
 db = mysql.connector.connect(
+    
     host="127.0.0.1",
     user="root",
-    password="", # Kosongkan sesuai settingan Laragon
-    database="student_management_system" # Nama DB yang kamu buat tadi
+    password="",
+    database="student_management_system"
 )
 
 cursor = db.cursor()
